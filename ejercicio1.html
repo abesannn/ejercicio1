@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table id="table">
+        <thead>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>Website</th>
+            <th>Company</th>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</body>
+<script>
+    const BASE_URL = "https://jsonplaceholder.typicode.com/users"
+
+    const table = document.getElementById("table")
+
+    async function getUsers() {
+        const response = await fetch(BASE_URL).catch(err => alert(err))
+        const data = await response.json()
+        
+        data.forEach(user => {
+            
+            const fila = table.insertRow()
+            fila.insertCell().innerHTML = user.id
+            fila.insertCell().innerHTML = user.name
+            fila.insertCell().innerHTML = user.username
+            fila.insertCell().innerHTML = user.email
+            fila.insertCell().innerHTML = user.address.street
+            fila.insertCell().innerHTML = user.phone
+            fila.insertCell().innerHTML = user.website
+            fila.insertCell().innerHTML = user.company.name
+        });
+    }
+
+    getUsers()
+</script>
+</html>
